@@ -23,8 +23,21 @@ namespace HuaweiAPITest {
 
         private static void Main(string[] args) {
             IOMeterAPIClient ap = new IOMeterAPIClient();
-            ap.GetValue();
-            EliminaVecchiLog();
+            Console.WriteLine("------ AVVIO SERVIZIO TEST  ----------------\n\n1) q per uscire\n\n2) E) EnergiaTotaleIstantaneaPrelevata\n\n3)P PotenzaContrattuale");
+            String inputValues = Console.ReadLine();
+            while(!inputValues.Equals("q")) {
+                if (inputValues.Equals("e") || inputValues.Equals("E")) {
+                    ap.EnergiaTotaleIstantaneaPrelevata();
+                }
+                else if (inputValues.Equals("p") || inputValues.Equals("P")) {
+                    ap.PotenzaContrattuale();
+                }
+                Console.WriteLine("------ AVVIO SERVIZIO TEST  ----------------\n\n1) q per uscire\n\n2) E) EnergiaTotaleIstantaneaPrelevata\n\n3)P PotenzaContrattuale");
+
+                inputValues = Console.ReadLine();
+            }
+                EliminaVecchiLog();
+            }
         }
-    }
+    
 }

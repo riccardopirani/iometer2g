@@ -1,3 +1,6 @@
+C:\Dev\241.HuaweiAPIPlugin\HuaweiAPITest\obj\Debug\IOMeterAPITest.csproj.AssemblyReference.cache
+C:\Dev\241.HuaweiAPIPlugin\HuaweiAPITest\obj\Debug\IOMeterAPITest.csproj.SuggestedBindingRedirects.cache
+C:\Dev\241.HuaweiAPIPlugin\HuaweiAPITest\obj\Debug\IOMeterAPITest.csproj.CoreCompileInputs.cache
 C:\Dev\241.HuaweiAPIPlugin\HuaweiAPITest\bin\Debug\HuaweiAPITest.exe.config
 C:\Dev\241.HuaweiAPIPlugin\HuaweiAPITest\bin\Debug\HuaweiAPITest.exe
 C:\Dev\241.HuaweiAPIPlugin\HuaweiAPITest\bin\Debug\HuaweiAPITest.pdb
@@ -14,9 +17,6 @@ C:\Dev\241.HuaweiAPIPlugin\HuaweiAPITest\bin\Debug\HuaweiAPICore.pdb
 C:\Dev\241.HuaweiAPIPlugin\HuaweiAPITest\bin\Debug\log4net.xml
 C:\Dev\241.HuaweiAPIPlugin\HuaweiAPITest\bin\Debug\Newtonsoft.Json.xml
 C:\Dev\241.HuaweiAPIPlugin\HuaweiAPITest\bin\Debug\MySql.Data.xml
-C:\Dev\241.HuaweiAPIPlugin\HuaweiAPITest\obj\Debug\IOMeterAPITest.csproj.AssemblyReference.cache
-C:\Dev\241.HuaweiAPIPlugin\HuaweiAPITest\obj\Debug\IOMeterAPITest.csproj.SuggestedBindingRedirects.cache
-C:\Dev\241.HuaweiAPIPlugin\HuaweiAPITest\obj\Debug\IOMeterAPITest.csproj.CoreCompileInputs.cache
 C:\Dev\241.HuaweiAPIPlugin\HuaweiAPITest\obj\Debug\IOMeterAPITest.csproj.CopyComplete
 C:\Dev\241.HuaweiAPIPlugin\HuaweiAPITest\obj\Debug\HuaweiAPITest.exe
 C:\Dev\241.HuaweiAPIPlugin\HuaweiAPITest\obj\Debug\HuaweiAPITest.pdb

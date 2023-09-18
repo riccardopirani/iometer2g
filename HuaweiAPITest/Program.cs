@@ -1,5 +1,4 @@
-﻿using EILib.Dao.Managers;
-using HuaweiAPICore.Managers;
+﻿using HuaweiAPICore.Managers;
 using System;
 
 namespace HuaweiAPITest {

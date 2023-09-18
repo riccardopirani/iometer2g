@@ -96,9 +96,13 @@ namespace HuaweiAPICore.Managers {
                 }
             }
             if (responseString.Length > 0) {
+                int count = 0;
                 dynamic json = JsonConvert.DeserializeObject(responseString);
                 foreach (var item in json) {
-                    Console.WriteLine(item);
+                    if (count == 2) {
+                        Console.WriteLine(item);
+                    }
+                    count++;
                 }
             }
         }

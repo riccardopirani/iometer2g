@@ -1,0 +1,86 @@
+CONFIGURAZIONE DI UN NUOVO IMPIANTO HUAWEI
+
+Prima di procedere al mapping, occorre scaricare l'elenco degli impianti e dei devices
+in modo da avere accesso gli ID utilizzati da huawei per identificare i dispositivi.
+Per avere questo elenco e' stato creato un aposito programma situato sul server di MariaDB.
+
+Andare in remote desktop sul server MariaDB, aprire una console e lanciare il programma
+C:\Projects\Monitoring\HuaweiStationInfo\HuaweiStationInfo.exe  username_API  password_API  
+
+es. per tutti gli impianti collegati all'ccount api di Energy Intelligence:
+HuaweiStationInfo.exe  energyintelligence Huawei@2020    
+
+
+Il programma si connette al cloud huawei e scarica un file json contenente tutti gli impianti ed i dispositivi figli
+e lo salva in C:\Projects\Monitoring\HuaweiStationInfo\01.Stations.
+Aprire il file con notepad++, copiare il contenuto del file ed  incollarlo dentro l'editor online http://jsonviewer.stack.hu/
+per poter sfogliare comodamente i nodi del json.
+A questo punto e' possibile determinare i dati  STATIONID ( id dell'impianto), DEVID (id del dispositivo), devTypeId  (tipo dispositivo) 
+che occorrono per creare il mapping.
+NB: e' possibile mappare solo inverter, batterie e multimetri. Sensori ed ottimizzatori, anche se sono presenti nell'elenco non sono mappabili.
+
+
+Ora aprire mysql workbench ed andare nella tabella huawei_api_device_mapping.
+Questa tabella rappresenta la mappatura tra i dispositivi  SolarEdge e quelli EI.
+Regole di compilazione:
+
+per MAPID = nuovo uuid();
+STATIONCODE = ID dell'impianto
+DEVID = ID del dispositivo
+devType = 38 Inverter, 39 Batteria, 47 Multimetro
+IDCUSTOMER = IDCUSTOMER EI
+IDPARK = IDPARK EI
+NOTE = nome del dispositivo che aiuti noi a riconoscerlo
+ENABLED = 0 o 1  per abilitare o meno il download dei dati
+LAST_DATE_AQUIRED = null  
+LAST_DATE_CALLED = null
+ERROR= NULL
+API_JSON_FOLDER = Folder dove salvare i dati sul disco del server di monitoraggio. 
+	NB: deve essere un percorso di rete del tipo \\EI-SRV-MONITOR\inetpub\ftproot\00_BoxLoggerEI\ViaggiRiccardo\Huawei_API\
+ID_API_ACCOUNT = ID dell'account da utilizzare riferito alla tabella huawei_api_account, mettere sempre EI_SOLAREDGE_01
+
+
+
+Dopo aver creato il record di mapping del dispositivo, occorre creare i record di mapping delle grandezze in 
+huawei_api_device_mapping. Basta copiare dalle mappature già esistenti.
+
+
+
+
+/*******************************************************
+	SERVIZIO CHE SCARICA I DATI QUOTIDIANAMENTE
+/*******************************************************
+
+Il servizio che scarica i dati si trova sul server di mariadb, cartella C:\Projects\Monitoring\HuaweiAPIPlugin
+e si arresta\avvia dai servizi windows con nome "EI_HuaweiAPIPlugin".
+
+
+/*******************************************************
+    COMANDO PER SCARICARE I DATI MANUALMENTE
+/*******************************************************
+   
+Per processare manualmente un impianto (scaricando dal cloud Huawei i dati) e' presente l'eseguibile
+C:\Projects\Monitoring\HuaweiSinglePlantLauncher che deve essere lanciato manualmente es.
+
+HuaweiSinglePlantLauncher.exe IDPARK  DATE_PROCESS
+				oppure
+HuaweiSinglePlantLauncher.exe IDPARK  DATE_FROM DATE_TO
+
+
+
+
+/*******************************************************************************************
+    COMANDO PER RIPROCESSARE\CARICARE MANUALMENTE DATI SCARICATI IN LOCALE SU FILE
+/*******************************************************************************************
+
+Il programma e' utile nel caso in cui si debbano recuperare dei dati scaricati dal cloud Huawei ma non immessi nel database
+o recuperare rapidamente dati eliminati per errore dal nostro db.
+Il programma si occupa di leggere i dati dai file json che vengono normalmente storicizzati dal servizio che gira piu' volte al giorno, mappare i dati ed inserirli su database.
+NB: il programma legge la tabella huawei_api_device_mapping dove per l'IDPARK passato determina tutti i device figli ed il path dove i json vengono salvati
+
+Lanciare manualmente il programma che si trova in C:\Projects\Monitoring\HuaweiRecuperoDaFile
+
+
+HuaweiRecuperoDaFile.exe  IDPARK  DATE_PROCESS
+		oppure
+HuaweiRecuperoDaFile.exe IDPARK  DATE_FROM DATE_TO

@@ -1,0 +1,10 @@
+C:\Projects\Monitoring\HuaweiStationInfo\z_note.txt
+C:\Projects\Monitoring\HuaweiStationInfo\HuaweiStationInfo.exe.config
+C:\Projects\Monitoring\HuaweiStationInfo\HuaweiStationInfo.exe
+C:\Projects\Monitoring\HuaweiStationInfo\HuaweiStationInfo.pdb
+C:\Dev\241.HuaweiAPIPlugin\HuaweiStationInfo\obj\Debug\HuaweiStationInfo.csproj.AssemblyReference.cache
+C:\Dev\241.HuaweiAPIPlugin\HuaweiStationInfo\obj\Debug\HuaweiStationInfo.csproj.SuggestedBindingRedirects.cache
+C:\Dev\241.HuaweiAPIPlugin\HuaweiStationInfo\obj\Debug\HuaweiStationInfo.csproj.CoreCompileInputs.cache
+C:\Dev\241.HuaweiAPIPlugin\HuaweiStationInfo\obj\Debug\HuaweiStationInfo.csproj.CopyComplete
+C:\Dev\241.HuaweiAPIPlugin\HuaweiStationInfo\obj\Debug\HuaweiStationInfo.exe
+C:\Dev\241.HuaweiAPIPlugin\HuaweiStationInfo\obj\Debug\HuaweiStationInfo.pdb

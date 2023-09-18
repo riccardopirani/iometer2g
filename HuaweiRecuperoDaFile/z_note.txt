@@ -1,0 +1,7 @@
+Il programma inserisce su database i dati letti dai file json presenti sul disco (che erano stati salvati interrogando le api con un altro programma)
+
+per importare un singolo giorno
+	HuaweiRecuperoDaFile.exe IDPARK yyyy-MM-dd  
+	
+per importare un periodo	
+	HuaweiRecuperoDaFile.exe IDPARK yyyy-MM-dd  yyyy-MM-dd 

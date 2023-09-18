@@ -1,0 +1,10 @@
+Il programma si connette al server huawei e scarica tutti i dati dei  5 minuti collegati ad un IDPARK (processa tute le mapature di tutti i dispositivi della tabella
+huawei_api_device_mapping collegati al parco).
+Scrive i dati su file json su disco ed inserisce i dati su database
+
+
+per processare un singolo giorno
+	HuaweiSinglePlantLauncher.exe IDPARK yyyy-MM-dd  
+	
+per processare un periodo	
+	HuaweiSinglePlantLauncher.exe IDPARK yyyy-MM-dd  yyyy-MM-dd 

@@ -1,0 +1,12 @@
+Scarica dal portale huawei l'elenco degli impianti associati ad un login API
+e salva su file json la struttura degli impianti e dei dispositivi
+in modo da darci una mappa comprensiva di ID, nomi e tipi dei dispositivi
+per poter effettuare la mappatura
+
+uso:
+HuaweiStationInfo.exe username_API  password_API
+
+per Energy Intelligence il comando e' :
+
+HuaweiStationInfo.exe energyintelligence Huawei@2020
+

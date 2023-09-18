@@ -10,17 +10,8 @@ namespace HuaweiAPICore.Managers {
     public sealed class IOMeterAPIClient : ManagerBase {
         private String baseURL = "http://dev1.sgh.snpds.com:8023";
 
-        public HttpWebRequest initrequest(String urlpass, String requestENUM) {
-            string requestMethod = requestENUM;
-            string url = baseURL + urlpass;
-            HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
-            request.Method = requestMethod;
-            request.ContentType = "application/json";
-            return request;
-        }
-
-        public bool GetValue() {
-            HttpWebRequest request = initrequest("/apps/iomtsgdata/v1/obisdescriptor", RestClientMethodEnum.GET);
+        public void DataInizioContratto() {
+            HttpWebRequest request = initrequest("/apps/iomtsgdata/v1/tq9p5j-kthtn-edx7d-ashf8-maxma/IT001E56401705/0-0:94.39.103.255_1,0_2", RestClientMethodEnum.GET);
             String responseString;
             using (HttpWebResponse response = request.GetResponse() as HttpWebResponse) {
                 using (Stream responseStream = response.GetResponseStream()) {
@@ -34,10 +25,65 @@ namespace HuaweiAPICore.Managers {
                     Console.WriteLine(item);
                 }
             }
-            PotenzaInstantanea();
+        }
+
+        public void EnergiaTotaleIstantaneaPrelevata() {
+            try {
+                HttpWebRequest request = initrequest("/apps/iomtsgdata/v1/tq9p5j-kthtn-edx7d-ashf8-maxma/IT001E56401705/1-0:1.8.0.255_3,0_2", RestClientMethodEnum.GET);
+                String responseString;
+                using (HttpWebResponse response = request.GetResponse() as HttpWebResponse) {
+                    using (Stream responseStream = response.GetResponseStream()) {
+                        StreamReader reader = new StreamReader(responseStream, System.Text.Encoding.UTF8);
+                        responseString = reader.ReadToEnd().ToString();
+                    }
+                }
+                if (responseString.Length > 0) {
+                    dynamic json = JsonConvert.DeserializeObject(responseString);
+                    foreach (var item in json) {
+                        Console.WriteLine(item);
+                    }
+                }
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+        public bool GetValue() {
+            try {
+                HttpWebRequest request = initrequest("/apps/iomtsgdata/v1/obisdescriptor", RestClientMethodEnum.GET);
+                String responseString;
+                using (HttpWebResponse response = request.GetResponse() as HttpWebResponse) {
+                    using (Stream responseStream = response.GetResponseStream()) {
+                        StreamReader reader = new StreamReader(responseStream, System.Text.Encoding.UTF8);
+                        responseString = reader.ReadToEnd().ToString();
+                    }
+                }
+                if (responseString.Length > 0) {
+                    dynamic json = JsonConvert.DeserializeObject(responseString);
+                    foreach (var item in json) {
+                        Console.WriteLine(item);
+                    }
+                }
+                //EnergiaTotaleIstantaneaPrelevata();
+                //PotenzaInstantanea();
+                DataInizioContratto();
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex.ToString());
+            }
+
             return true;
         }
 
+        public HttpWebRequest initrequest(String urlpass, String requestENUM) {
+            string requestMethod = requestENUM;
+            string url = baseURL + urlpass;
+            HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+            request.Method = requestMethod;
+            request.ContentType = "application/json";
+            return request;
+        }
         public void PotenzaInstantanea() {
             HttpWebRequest request = initrequest("/apps/iomtsgdata/v1/tq9p5j-kthtn-edx7d-ashf8-maxma/IT001E56401705/1-0:1.7.0.255_3,0_2", RestClientMethodEnum.GET);
             String responseString;

@@ -30,7 +30,7 @@ namespace HuaweiSinglePlantLauncher
 
             ConfigCFGManager configMan = new ConfigCFGManager();
             ConfigCFG config = new ConfigCFG();
-            // metto a true nel programma di lancio manuale in modo da non alterare questo campo
+            
             config.skip_update_LAST_DATE_CALLED = true;
             if (!configMan.LoadConfiguration(ref config))
             {
@@ -71,12 +71,12 @@ namespace HuaweiSinglePlantLauncher
         static void EliminaVecchiLog()
         {
 
-            //lancio eliminazione dei vecchi file di log
+            
 
             try
             {
-                //if ((DateTime.Now.Hour >= 6) && (DateTime.Now.Hour <= 9))
-                //{
+                
+                
                 string curAppPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
                 if (!string.IsNullOrEmpty(curAppPath))
                     curAppPath = System.IO.Path.GetDirectoryName(curAppPath);
@@ -85,7 +85,7 @@ namespace HuaweiSinglePlantLauncher
 
                 DateTime delPrevious = DateTime.Now.AddDays(-30);
                 EILib.Dao.Managers.LoggerBase.DeleteLogOlderThanDate(curAppPath, "00.Log", delPrevious);
-                //}
+                
             }
             catch (Exception)
             {
@@ -104,10 +104,10 @@ namespace HuaweiSinglePlantLauncher
                 HuaweiAPIDeviceMappingManager hwMan = new HuaweiAPIDeviceMappingManager(config.cloudenergyConnection);
                 List<HuaweiAPIDeviceMapping> plantsMapping = hwMan.GetByIDPARK(IDPARK, EIConstants.HU_API_Type_Enum.HUAWEI);
                 plantsMapping = plantsMapping.Where(m => m.ENABLED == true).ToList();
-                //SOLO PER DEBUG PER LIMITARE I CASI GESTITI
+                
                 if(config.DEBUG_MODE)
                 {
-                    //plantsMapping = plantsMapping.Where(m => m.STATIONCODE == "033699CF9E9F414EA26B297E6B7EF131").ToList();
+                    
                 }
 
 
@@ -115,7 +115,7 @@ namespace HuaweiSinglePlantLauncher
                 {
                     if (dateTo == null)
                     {
-                        //ConsoleAndLog($"Processo IDPARK '{IDPARK}' singolo giorno {dateFrom.ToString("yyyy-MM-dd")}");
+                        
                         huMan.ProcessaSingoloGiorno(map, dateFrom);
                     }
                     else

@@ -13,8 +13,8 @@ namespace HuaweiStationInfo
 {
     class Program
     {
-        //si collega alle api huawei e scarica un json che contiene tutti gli impianti ed i dati relativi ai loro devices
-        // comando.exe  username_API  password_API
+        
+        
         static void Main(string[] args)
         {
             ConsoleAndLog(" ");
@@ -42,12 +42,12 @@ namespace HuaweiStationInfo
         static void EliminaVecchiLog()
         {
 
-            //lancio eliminazione dei vecchi file di log
+            
 
             try
             {
-                //if ((DateTime.Now.Hour >= 6) && (DateTime.Now.Hour <= 9))
-                //{
+                
+                
                     string curAppPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
                     if (!string.IsNullOrEmpty(curAppPath))
                         curAppPath = System.IO.Path.GetDirectoryName(curAppPath);
@@ -56,7 +56,7 @@ namespace HuaweiStationInfo
 
                     DateTime delPrevious = DateTime.Now.AddDays(-30);
                     EILib.Dao.Managers.LoggerBase.DeleteLogOlderThanDate(curAppPath, "00.Log", delPrevious);
-                //}
+                
             }
             catch (Exception)
             {
@@ -102,7 +102,7 @@ namespace HuaweiStationInfo
                     /**********************************/
                     
                     List<GetStationListResponse> stations = null;
-                    //ottengo tutti gli impianti
+                    
                     ConsoleAndLog($"Ottengo l'elenco degli impianti...");
 
                     if(!GetStationList(config, client, ref stations))
@@ -122,14 +122,14 @@ namespace HuaweiStationInfo
 
                         ConsoleAndLog($"");
                         ConsoleAndLog($"Ottengo l'elenco dei dispositivi per ogni impianto");
-                        // per ogni impianto richiedo i dispositivi
+                        
                         for (int i = 0; i < stations.Count; i++)
                         {
                             List<GetDevListResponse> devices = stations[i].util_devices;
                             FillStationDevices(config, client, i+1, stations[i].stationCode, ref devices);
                             stations[i].util_devices = devices;
                         }
-                        //salvo la struttura su dile json
+                        
                         SaveStationJson(stations);
                     }
                     
@@ -189,7 +189,7 @@ namespace HuaweiStationInfo
             {
                 HuaweiRestClientResponse deviceListResponse = null;
                 devices = null;
-                //ottengo tutti gli impianti
+                
 
                 int tentativi = 0;
                 bool esci = false;

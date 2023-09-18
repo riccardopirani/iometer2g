@@ -32,7 +32,7 @@ namespace HuaweiRecuperoDaFile
 
             ConfigCFGManager configMan = new ConfigCFGManager();
             ConfigCFG config = new ConfigCFG();
-            // metto a true nel programma di lancio manuale in modo da non alterare questo campo
+            
             config.skip_update_LAST_DATE_CALLED = true;
             if (!configMan.LoadConfiguration(ref config))
             {
@@ -84,7 +84,7 @@ namespace HuaweiRecuperoDaFile
                 huMan.OnNotifyMessage += HuMan_OnNotifyMessage;
                 if (dateTo == null)
                 {
-                    //ConsoleAndLog($"Processo IDPARK '{IDPARK}' singolo giorno {dateFrom.ToString("yyyy-MM-dd")}");
+                    
                     huMan.RecuperaDaFileSingoloGiorno(IDPARK,  dateFrom);
                 }
                 else

@@ -1,39 +1,25 @@
 ﻿using HuaweiAPICore.Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
 using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace HuaweiAPIPlugin
-{
-    public partial class MainService : ServiceBase
-    {
-        HuaweiAPIMainService theService = null;
+namespace HuaweiAPIPlugin {
 
-        public MainService()
-        {
+    public partial class MainService : ServiceBase {
+        private IOMeterAPIMainService theService = null;
+
+        public MainService() {
             InitializeComponent();
         }
 
-        protected override void OnStart(string[] args)
-        {
-            theService = new HuaweiAPIMainService();
+        protected override void OnStart(string[] args) {
+            theService = new IOMeterAPIMainService();
             theService.OnServerStopped += TheService_OnServerStopped;
             theService.StartService();
         }
 
-        private void TheService_OnServerStopped()
-        {
-
+        private void TheService_OnServerStopped() {
         }
 
-        protected override void OnStop()
-        {
+        protected override void OnStop() {
             if (theService != null)
                 theService.StopService();
         }

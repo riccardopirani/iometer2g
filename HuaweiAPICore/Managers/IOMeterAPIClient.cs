@@ -27,6 +27,23 @@ namespace HuaweiAPICore.Managers {
             }
         }
 
+        public void CostanteTrasformazione() {
+            HttpWebRequest request = initrequest("/apps/iomtsgdata/v1/tq9p5j-kthtn-edx7d-ashf8-maxma/IT001E56401705/1-0:0.4.2.255_1,0_2", RestClientMethodEnum.GET);
+            String responseString;
+            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse) {
+                using (Stream responseStream = response.GetResponseStream()) {
+                    StreamReader reader = new StreamReader(responseStream, System.Text.Encoding.UTF8);
+                    responseString = reader.ReadToEnd().ToString();
+                }
+            }
+            if (responseString.Length > 0) {
+                dynamic json = JsonConvert.DeserializeObject(responseString);
+                foreach (var item in json) {
+                    Console.WriteLine(item);
+                }
+            }
+        }
+
         public void EnergiaTotaleIstantaneaPrelevata() {
             /*  try {
                   HttpWebRequest request = initrequest("/apps/iomtsgdata/v1/tq9p5j-kthtn-edx7d-ashf8-maxma/IT001E56401705/1-0:1.8.0.255_3,0_2", RestClientMethodEnum.GET);
@@ -68,7 +85,7 @@ namespace HuaweiAPICore.Managers {
                 EnergiaTotaleIstantaneaPrelevata();
                 //PotenzaInstantanea();
                 //DataInizioContratto();
-                PotenzaContrattuale();
+                PotenzaAttivaPrelevataInstantanea();
             }
             catch (Exception ex) {
                 Console.WriteLine(ex.ToString());
@@ -107,7 +124,7 @@ namespace HuaweiAPICore.Managers {
             }
         }
 
-        public void PotenzaInstantanea() {
+        public void PotenzaAttivaPrelevataInstantanea() {
             HttpWebRequest request = initrequest("/apps/iomtsgdata/v1/tq9p5j-kthtn-edx7d-ashf8-maxma/IT001E56401705/1-0:1.7.0.255_3,0_2", RestClientMethodEnum.GET);
             String responseString;
             using (HttpWebResponse response = request.GetResponse() as HttpWebResponse) {
@@ -121,6 +138,79 @@ namespace HuaweiAPICore.Managers {
                 foreach (var item in json) {
                     Console.WriteLine(item);
                 }
+            }
+        }
+
+        public void CodiceCliente() {
+            HttpWebRequest request = initrequest("/apps/iomtsgdata/v1/tq9p5j-kthtn-edx7d-ashf8-maxma/IT001E56401705/0-0:94.39.100.255_1,0_2", RestClientMethodEnum.GET);
+            String responseString;
+            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse) {
+                using (Stream responseStream = response.GetResponseStream()) {
+                    StreamReader reader = new StreamReader(responseStream, System.Text.Encoding.UTF8);
+                    responseString = reader.ReadToEnd().ToString();
+                }
+            }
+            if (responseString.Length > 0) {
+                dynamic json = JsonConvert.DeserializeObject(responseString);
+                foreach (var item in json) {
+                    Console.WriteLine(item);
+                }
+            }
+        }
+
+        public void CodicePOD() {
+            HttpWebRequest request = initrequest("/apps/iomtsgdata/v1/tq9p5j-kthtn-edx7d-ashf8-maxma/IT001E56401705/1-0:96.1.0.255_1,0_2", RestClientMethodEnum.GET);
+            String responseString;
+            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse) {
+                using (Stream responseStream = response.GetResponseStream()) {
+                    StreamReader reader = new StreamReader(responseStream, System.Text.Encoding.UTF8);
+                    responseString = reader.ReadToEnd().ToString();
+                }
+            }
+            if (responseString.Length > 0) {
+                dynamic json = JsonConvert.DeserializeObject(responseString);
+                foreach (var item in json) {
+                    Console.WriteLine(item);
+                }
+            }
+        }
+
+        public void PotenzaDisponibile() {
+            HttpWebRequest request = initrequest("/apps/iomtsgdata/v1/tq9p5j-kthtn-edx7d-ashf8-maxma/IT001E56401705/1-0:1.31.0.255_3,0_2", RestClientMethodEnum.GET);
+            String responseString;
+            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse) {
+                using (Stream responseStream = response.GetResponseStream()) {
+                    StreamReader reader = new StreamReader(responseStream, System.Text.Encoding.UTF8);
+                    responseString = reader.ReadToEnd().ToString();
+                }
+            }
+            if (responseString.Length > 0) {
+                dynamic json = JsonConvert.DeserializeObject(responseString);
+                foreach (var item in json) {
+                    Console.WriteLine(item);
+                }
+            }
+        }
+
+        public void FasciaOrariaCorrente() {
+            HttpWebRequest request = initrequest("/apps/iomtsgdata/v1/tq9p5j-kthtn-edx7d-ashf8-maxma/IT001E56401705/0-0:96.14.0.255_1,0_2", RestClientMethodEnum.GET);
+            String responseString;
+            try {
+                using (HttpWebResponse response = request.GetResponse() as HttpWebResponse) {
+                    using (Stream responseStream = response.GetResponseStream()) {
+                        StreamReader reader = new StreamReader(responseStream, System.Text.Encoding.UTF8);
+                        responseString = reader.ReadToEnd().ToString();
+                    }
+                }
+                if (responseString.Length > 0) {
+                    dynamic json = JsonConvert.DeserializeObject(responseString);
+                    foreach (var item in json) {
+                        Console.WriteLine(item);
+                    }
+                }
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex.ToString());
             }
         }
     }

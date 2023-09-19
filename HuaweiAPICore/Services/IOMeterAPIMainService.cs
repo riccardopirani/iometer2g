@@ -49,7 +49,7 @@ namespace HuaweiAPICore.Services {
                 LoggerBase.MyLogger.Error($"Exception in {MethodBase.GetCurrentMethod().Name} : {ce.Message}", ce);
             }
             return fl;
-        } 
+        }
 
         private void Service_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
             if (OnServerStopped != null)
